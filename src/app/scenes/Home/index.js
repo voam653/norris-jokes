@@ -2,21 +2,14 @@ import React, { Component } from 'react';
 import { Container } from './style';
 import JokeModal from '../../components/JokeModal';
 import Header from '../../components/Header';
+import CategoryList from '../../components/CategoryList';
 
 class Home extends Component {
     render() {
         return (
             <Container>
                 <Header />
-                <ul>
-                    <li>
-                        <div>
-                            <button type="button" data-toggle="modal" data-target="#jokeModal">
-                                Animals
-                            </button>
-                        </div>
-                    </li>
-                </ul>
+                <CategoryList />
                 <JokeModal />
             </Container>
         )
