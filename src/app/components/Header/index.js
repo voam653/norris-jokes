@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Container } from './style';
+import { Container, Title } from './style';
 
-class Home extends Component {
+class Header extends Component {
     render() {
         return (
             <Container>
-                Home
+                <Title> Categories </Title>
             </Container>
         )
     }
 }
 
-export default Home;
+export default Header;
