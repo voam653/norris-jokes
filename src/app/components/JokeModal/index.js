@@ -1,10 +1,54 @@
 import React, { Component } from 'react';
+import { getJoke } from '../../actions/joke';
 import { connect } from 'react-redux';
 
+const AMOUNT_PREVIOUS = -1;
+const AMOUNT_NEXT = 1;
+
 class JokeModal extends Component {
+
     constructor(props) {
         super(props);
         this.jokeTemplate = this.jokeTemplate.bind(this);
+        this.getAnotherJoke = this.getAnotherJoke.bind(this);
+        this.loadingTemplate = this.loadingTemplate.bind(this);
+        this.getFirstCategory = this.getFirstCategory.bind(this);
+        this.getCategoryByIndex = this.getCategoryByIndex.bind(this);
+        this.getJokeNextCategory = this.getJokeNextCategory.bind(this);
+        this.getJokePreviousCategory = this.getJokePreviousCategory.bind(this);
+    }
+
+    getFirstCategory(categories) {
+        return categories[0];
+    }
+
+    getAnotherJoke(categories) {
+        this.props.getJoke(this.getFirstCategory(categories));
+    }
+
+    getJokePreviousCategory(categories) {
+        this.props.getJoke(
+            this.getCategoryByIndex(this.getFirstCategory(categories), AMOUNT_PREVIOUS)
+        );
+    }
+
+    getJokeNextCategory(categories) {
+        this.props.getJoke(
+            this.getCategoryByIndex(this.getFirstCategory(categories), AMOUNT_NEXT)
+        );
+    }
+
+    getCategoryByIndex(category, changeValue) {
+        const { categories } = this.props;
+        const index = categories.indexOf(category) + changeValue;
+
+        if (index < 0) {
+            return categories.get(categories.size - 1);
+        } else if (index >= categories.size) {
+            return categories.get(0);
+        }
+
+        return categories.get(index);
     }
 
     loadingTemplate() {
@@ -19,9 +63,14 @@ class JokeModal extends Component {
                 <div className="modal-header">
                     <div className="content">
                         <h5 className="modal-title" id="exampleModalLongTitle">
-                            { joke.categories[0] }
+                            { this.getFirstCategory(joke.categories) }
                         </h5>
-                        <button type="button" className="btn btn-outline-primary"> Load another joke </button>
+                        <button
+                            type="button"
+                            className="btn btn-outline-primary"
+                            onClick={() => this.getAnotherJoke(joke.categories)}>
+                            Load another joke
+                        </button>
                     </div>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -34,8 +83,18 @@ class JokeModal extends Component {
                     </figure>
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary"> Previous Category </button>
-                    <button type="button" className="btn btn-primary"> Next Category </button>
+                    <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => this.getJokePreviousCategory(joke.categories)}>
+                        Previous Category
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={() => this.getJokeNextCategory(joke.categories)}>
+                        Next Category
+                    </button>
                 </div>
             </>
         );
@@ -55,9 +114,15 @@ class JokeModal extends Component {
     }
 }
 
-const mapStateToProps = ({ joke }) => {
-    return { joke };
+const mapStateToProps = ({ joke, categories }) => {
+    return { joke, categories };
 };
 
-const JokeModalContainer = connect(mapStateToProps)(JokeModal);
+const mapDispatchToProps = dispatch => {
+    return {
+        getJoke: (category) => dispatch(getJoke(category))
+    };
+}
+
+const JokeModalContainer = connect(mapStateToProps, mapDispatchToProps)(JokeModal);
 export default JokeModalContainer;
