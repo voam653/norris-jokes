@@ -10,6 +10,7 @@ class JokeModal extends Component {
     constructor(props) {
         super(props);
 
+        this.getJoke = this.getJoke.bind(this);
         this.jokeTemplate = this.jokeTemplate.bind(this);
         this.getAnotherJoke = this.getAnotherJoke.bind(this);
         this.loadingTemplate = this.loadingTemplate.bind(this);
@@ -23,18 +24,22 @@ class JokeModal extends Component {
         return categories[0];
     }
 
+    getJoke(category) {
+        this.props.getJoke(category);
+    }
+
     getAnotherJoke(categories) {
-        this.props.getJoke(this.getFirstCategory(categories));
+        this.getJoke(this.getFirstCategory(categories));
     }
 
     getJokePreviousCategory(categories) {
-        this.props.getJoke(
+        this.getJoke(
             this.getCategoryByIndex(this.getFirstCategory(categories), AMOUNT_PREVIOUS)
         );
     }
 
     getJokeNextCategory(categories) {
-        this.props.getJoke(
+        this.getJoke(
             this.getCategoryByIndex(this.getFirstCategory(categories), AMOUNT_NEXT)
         );
     }
@@ -63,10 +68,11 @@ class JokeModal extends Component {
             <>
                 <div className="modal-header">
                     <div className="content">
-                        <h5 className="modal-title" id="exampleModalLongTitle">
+                        <h5 className="modal-title">
                             { this.getFirstCategory(joke.categories) }
                         </h5>
                         <button
+                            id="loadAnotherJoke"
                             type="button"
                             className="btn btn-outline-primary"
                             onClick={() => this.getAnotherJoke(joke.categories)}>
@@ -85,12 +91,14 @@ class JokeModal extends Component {
                 </div>
                 <div className="modal-footer">
                     <button
+                        id="previousJokeCategory"
                         type="button"
                         className="btn btn-secondary"
                         onClick={() => this.getJokePreviousCategory(joke.categories)}>
                         Previous Category
                     </button>
                     <button
+                        id="nextJokeCategory"
                         type="button"
                         className="btn btn-primary"
                         onClick={() => this.getJokeNextCategory(joke.categories)}>
