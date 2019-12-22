@@ -9,6 +9,7 @@ class JokeModal extends Component {
 
     constructor(props) {
         super(props);
+
         this.jokeTemplate = this.jokeTemplate.bind(this);
         this.getAnotherJoke = this.getAnotherJoke.bind(this);
         this.loadingTemplate = this.loadingTemplate.bind(this);
