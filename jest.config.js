@@ -13,7 +13,7 @@ module.exports = {
     "!**/actions/**",
     "!**/src/index.js",
     "!**/service-worker/**",
-    "!**/style.js",
+    "!**/styles.js",
     "!**/*.config.js",
     "!**/actionsTypes.js"
   ]

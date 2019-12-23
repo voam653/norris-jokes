@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from './style';
+import { Container } from './styles';
 import JokeModal from '../../components/JokeModal';
 import Header from '../../components/Header';
 import CategoryList from '../../components/CategoryList';

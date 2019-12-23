@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getCategories } from '../../actions/categories';
 import { connect } from 'react-redux';
+import { List } from './styles';
 import CategoryItem from '../CategoryItem';
 
 class CategoryList extends Component {
@@ -11,13 +12,13 @@ class CategoryList extends Component {
     render() {
         const { categories } = this.props;
         return (
-            <ul>
+            <List>
                 {
                     categories.map((category, index) => (
                         <CategoryItem key={index} category={category} />
                     ))
                 }
-            </ul>
+            </List>
         )
     }
 }

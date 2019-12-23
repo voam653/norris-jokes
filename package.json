@@ -30,13 +30,9 @@
       "ecmaVersion": 9
     },
     "rules": {
-      "semi": [
-        "error",
-        "always"
-      ],
       "quotes": [
         "error",
-        "double"
+        "single"
       ]
     }
   },

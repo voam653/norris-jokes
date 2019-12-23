@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Title } from './style';
+import { Container, Title } from './styles';
 
 class Header extends Component {
     render() {
         return (
             <Container>
-                <Title> Categories </Title>
+                <Title> Jokes Categories </Title>
             </Container>
         )
     }

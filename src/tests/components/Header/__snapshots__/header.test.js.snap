@@ -3,7 +3,7 @@
 exports[`HeaderComponent Snapshots Should be a simple HeaderComponent 1`] = `
 <ForwardRef(styled.header)>
   <ForwardRef(styled.h1)>
-     Categories 
+     Jokes Categories 
   </ForwardRef(styled.h1)>
 </ForwardRef(styled.header)>
 `;

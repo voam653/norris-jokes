@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getJoke } from '../../actions/joke';
 import { connect } from 'react-redux';
+import { Item, Button } from './styles';
 
 class CategoryItem extends Component {
     constructor(props){
@@ -15,15 +16,15 @@ class CategoryItem extends Component {
     render() {
         const { category } = this.props;
         return (
-            <li>
-                <button
+            <Item>
+                <Button
                     type="button"
                     data-toggle="modal"
                     data-target="#jokeModal"
                     onClick={ () => this.getJoke(category) }>
                     { category }
-                </button>
-            </li>
+                </Button>
+            </Item>
         )
     }
 }
