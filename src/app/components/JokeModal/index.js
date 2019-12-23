@@ -14,7 +14,9 @@ import {
     CloseIcon,
     Figure,
     ChuckNorrisImg,
-    Joke
+    Joke,
+    ModalTitle,
+    Header
 } from './styles';
 
 const AMOUNT_PREVIOUS = -1;
@@ -83,17 +85,9 @@ class JokeModal extends Component {
             <>
                 <ModalHeader className="modal-header">
                     <Content className="content">
-                        <h5 className="modal-title">
-                            { this.getFirstCategory(joke.categories) }
-                        </h5>
-
-                        <button
-                            id="loadAnotherJoke"
-                            type="button"
-                            className="btn btn-outline-primary"
-                            onClick={() => this.getAnotherJoke(joke.categories)}>
-                            Load another joke
-                        </button>
+                        <ModalTitle className="title">
+                            Norris Joke
+                        </ModalTitle>
                     </Content>
 
                     <CloseButton type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -102,9 +96,23 @@ class JokeModal extends Component {
                 </ModalHeader>
 
                 <ModalBody className="modal-body">
+                    <Header>
+                        <h4 className="modal-title">
+                            { this.getFirstCategory(joke.categories) }
+                        </h4>
+
+                        <button
+                            id="loadAnotherJoke"
+                            type="button"
+                            className="btn btn-outline-primary"
+                            onClick={() => this.getAnotherJoke(joke.categories)}>
+                            Load another joke
+                        </button>
+                    </Header>
+
                     <Figure>
-                        <ChuckNorrisImg src="deal.gif" alt="Chuck Norris" />
                         <Joke> { joke.value } </Joke>
+                        <ChuckNorrisImg src="deal.gif" alt="Chuck Norris" />
                     </Figure>
                 </ModalBody>
 
