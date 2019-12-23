@@ -10,7 +10,7 @@ import { createStore, applyMiddleware } from 'redux';
 import * as actionsTypes from '../../../app/actions/actionsTypes';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
-import rootReducer from "../../../app/reducers";
+import rootReducer from '../../../app/reducers';
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 configure({ adapter: new Adapter() });
 

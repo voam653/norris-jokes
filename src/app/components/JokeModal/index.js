@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
 import { getJoke } from '../../actions/joke';
 import { connect } from 'react-redux';
+import {
+    LoadingImg,
+    ModalContainer,
+    Modal,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    Content,
+    CloseButton,
+    CloseIcon,
+    Figure,
+    ChuckNorrisImg,
+    Joke
+} from './styles';
 
 const AMOUNT_PREVIOUS = -1;
 const AMOUNT_NEXT = 1;
@@ -59,18 +74,19 @@ class JokeModal extends Component {
 
     loadingTemplate() {
         return (
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="Loading Joke..." />
+            <LoadingImg src="loading.gif" alt="Loading Joke..." />
         );
     }
 
     jokeTemplate(joke) {
         return (
             <>
-                <div className="modal-header">
-                    <div className="content">
+                <ModalHeader className="modal-header">
+                    <Content className="content">
                         <h5 className="modal-title">
                             { this.getFirstCategory(joke.categories) }
                         </h5>
+
                         <button
                             id="loadAnotherJoke"
                             type="button"
@@ -78,18 +94,21 @@ class JokeModal extends Component {
                             onClick={() => this.getAnotherJoke(joke.categories)}>
                             Load another joke
                         </button>
-                    </div>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div className="modal-body">
-                    <figure>
-                        <img src="https://www.reactiongifs.com/wp-content/uploads/2013/06/deal.gif" alt="Chuck Norris" />
-                        <figcaption> { joke.value } </figcaption>
-                    </figure>
-                </div>
-                <div className="modal-footer">
+                    </Content>
+
+                    <CloseButton type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <CloseIcon aria-hidden="true">&times;</CloseIcon>
+                    </CloseButton>
+                </ModalHeader>
+
+                <ModalBody className="modal-body">
+                    <Figure>
+                        <ChuckNorrisImg src="deal.gif" alt="Chuck Norris" />
+                        <Joke> { joke.value } </Joke>
+                    </Figure>
+                </ModalBody>
+
+                <ModalFooter className="modal-footer">
                     <button
                         id="previousJokeCategory"
                         type="button"
@@ -97,6 +116,7 @@ class JokeModal extends Component {
                         onClick={() => this.getJokePreviousCategory(joke.categories)}>
                         Previous Category
                     </button>
+
                     <button
                         id="nextJokeCategory"
                         type="button"
@@ -104,7 +124,7 @@ class JokeModal extends Component {
                         onClick={() => this.getJokeNextCategory(joke.categories)}>
                         Next Category
                     </button>
-                </div>
+                </ModalFooter>
             </>
         );
     }
@@ -112,13 +132,21 @@ class JokeModal extends Component {
     render() {
         const { joke } = this.props;
         return (
-            <div className="modal fade" id="jokeModal" tabIndex="-1" role="dialog" aria-labelledby="jokeModal" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered" role="document">
-                    <div className="modal-content">
+            <ModalContainer
+                className="modal fade"
+                id="jokeModal"
+                tabIndex="-1"
+                role="dialog"
+                aria-labelledby="jokeModal"
+                aria-hidden="true">
+
+                <Modal className="modal-dialog modal-dialog-centered" role="document">
+                    <ModalContent className="modal-content">
                         { joke ? this.jokeTemplate(joke) : this.loadingTemplate() }
-                    </div>
-                </div>
-            </div>
+                    </ModalContent>
+                </Modal>
+
+            </ModalContainer>
         )
     }
 }
