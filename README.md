@@ -26,9 +26,9 @@ A aplicação irá abrir uma nova aba no browser, caso o não fizer, acesse [htt
 
 O sistema tem testes unitários para os components e para a api, para isso foi utilizado **Jest** e **Enzyme**.
 
-Para rodar os testes aplique o seguinte comando no terminal no memso diretório do preojeto: `npm run test`
+Para rodar os testes aplique o seguinte comando no terminal no memso diretório do projeto: `npm run test`
 
-É possivel que ele peça que instale o **Jest** globalmente, caso necessário, aplique o comando `npm install jest --global`
+É possível que ele peça que instale o **Jest** globalmente, caso necessário, aplique o comando `npm install jest --global`
 
 ### Coverage
 
