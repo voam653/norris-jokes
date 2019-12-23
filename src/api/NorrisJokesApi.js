@@ -1,21 +1,15 @@
 import axios from 'axios';
+import * as env from '../environments/environments';
 
-const norrisApi = axios.create({
-  baseURL: 'https://api.chucknorris.io/jokes/',
-  timeout: 6000,
-  validateStatus: function(status) {
-    return (
-      (status >= 200 && status <= 299) ||
-      (status >= 400 && status <= 499) || //BAD_REQUESTS
-      (status >= 500 && status <= 599) //SERVER_ERROR
-    );
-  },
+const norrisJokesApi = axios.create({
+  baseURL: env.NORRIS_JOKES_BASE_URL,
+  timeout: env.DEFAULT_TIMEOUT
 });
 
 export function getNorrisCategories() {
-  return norrisApi.get('categories');
+  return norrisJokesApi.get(env.NORRIS_JOKES_CATEGORIES);
 }
 
 export function getNorrisJoke(category) {
-  return norrisApi.get('random?category='+category);
+  return norrisJokesApi.get(env.NORRIS_JOKES_JOKE + category);
 }
