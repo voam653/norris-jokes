@@ -35,5 +35,4 @@ Para rodar os testes aplique o seguinte comando no terminal no memso diretório 
 Foi aplicado uma **COBERTURA DE 100% DE TESTES** nos testes, você pode acessar o gráfico gerado pelo Jest no diretório **/coverage/lcov-report/index.html**, onde você pode abrir no browser e navegar entre os códigos testados.
 Mas também é possivel ver o gráfico no terminal ao rodar o comando `npm run test`.
 
-***Se tiverem algum problema é só mandar um email para: voam653@gmail.com***
 ***Espero que tenham gostado e aguardo retorno :)***
